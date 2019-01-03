@@ -140,9 +140,9 @@
     },
     "_artifactsLocation": {
       "type": "string",
-      "defaultValue": "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/oms-all-deploy",
+      "defaultValue": "https://raw.githubusercontent.com/aaronlafferty/azuremonitor/master/azuredeploy.json",
       "metadata": {
-      "description": "The base URI where artifacts required by this template are located"
+        "description": "The base URI where artifacts required by this template are located"
       }
     },
     "_artifactsLocationSasToken": {
