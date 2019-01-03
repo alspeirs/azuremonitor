@@ -2,14 +2,8 @@
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "omsRecoveryVaultName": {
-      "value": "demoasr"
-    },
     "omsWorkspaceName": {
       "value": "demoworkspace12019"
-    },
-    "omsAutomationAccountName": {
-      "value": "omsadmin"
     },
     "azureAdmin": {
       "value": null
@@ -22,9 +16,6 @@
     },
     "virtualMachineAdminPassword": {
       "value": "Password20!8!!"
-    },
-    "omsAutomationRegion": {
-      "value": "East US 2"
     }
   }
 }
