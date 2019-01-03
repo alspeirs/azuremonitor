@@ -62,38 +62,6 @@
         "description": "Location for all resources."
       }
     },
-    "omsRecoveryVaultName": {
-      "type": "string",
-      "metadata": {
-      "description": "Assign a name for the ASR Recovery Vault"
-      }
-    },
-    "omsRecoveryVaultRegion": {
-      "type": "string",
-      "defaultValue": "East US",
-      "allowedValues": [
-        "West US",
-        "East US",
-        "North Europe",
-        "West Europe",
-        "Brazil South",
-        "East Asia",
-        "Southeast Asia",
-        "North Central US",
-        "South Central US",
-        "Japan East",
-        "Japan West",
-        "Australia East",
-        "Australia Southeast",
-        "Central US",
-        "East US 2",
-        "Central India",
-        "South India"
-      ],
-        "metadata": {
-         "description": "Specify the region for your Recovery Vault"
-        }
-    },
     "omsWorkspaceName": {
       "type": "string",
        "metadata": {
@@ -112,31 +80,6 @@
       "metadata": {
        "description": "Specify the region for your Workspace"
       }
-    },
-    "omsAutomationAccountName": {
-      "type": "string",
-      "metadata": {
-      "description": "Assign a name for the Automation account"
-      }
-    },
-    "omsAutomationRegion": {
-      "type": "string",
-      "defaultValue": "East US",
-      "allowedValues": [
-        "Japan East",
-        "East US 2",
-        "West Europe",
-        "Southeast Asia",
-        "South Central US",
-        "North Europe",
-        "Canada Central",
-        "Australia Southeast",
-        "Central India",
-        "Japan East"
-      ],
-        "metadata": {
-        "description": "Specify the region for your Automation account"
-        }
     },
     "_artifactsLocation": {
       "type": "string",
@@ -186,8 +129,6 @@
     "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('myVNETName'),  variables('myVNETSubnet1Name'))]",
     "wadMetricsResourceId": "[resourceId('Microsoft.Compute/virtualMachines', concat(parameters('virtualMachineNamePrefix')))]",
     "nestedTemplates": {
-      "omsRecoveryServices": "[concat(parameters('_artifactsLocation'), '/nestedtemplates/omsRecoveryServices.json', parameters('_artifactsLocationSasToken'))]",
-      "omsAutomation": "[concat(parameters('_artifactsLocation'), '/nestedtemplates/omsAutomation.json', parameters('_artifactsLocationSasToken'))]",
       "omsWorkspace": "[concat(parameters('_artifactsLocation'), '/nestedtemplates/omsWorkspace.json', parameters('_artifactsLocationSasToken'))]"
     }
   },
@@ -652,68 +593,6 @@
           },
           "omsWorkspaceRegion": {
             "value": "[parameters('omsWorkspaceRegion')]"
-          }
-        }
-      }
-    },
-    {
-      "type": "Microsoft.Resources/deployments",
-      "apiVersion": "2016-02-01",
-      "name": "omsRecoveryServices",
-      "properties": {
-        "mode": "Incremental",
-        "templateLink": {
-          "uri": "[variables('nestedTemplates').omsRecoveryServices]",
-          "contentVersion": "1.0.0.0"
-        },
-        "parameters": {
-          "omsRecoveryVaultName": {
-            "value": "[parameters('omsRecoveryVaultName')]"
-          },
-          "omsRecoveryVaultRegion": {
-            "value": "[parameters('omsRecoveryVaultRegion')]"
-          }
-        }
-      }
-    },
-    {
-      "type": "Microsoft.Resources/deployments",
-      "apiVersion": "2016-02-01",
-      "name": "omsAutomation",
-      "dependsOn": [
-        "[concat('Microsoft.Resources/deployments/', 'omsRecoveryServices')]",
-        "[concat('Microsoft.Resources/deployments/', 'omsWorkspace')]"
-      ],
-      "properties": {
-        "mode": "Incremental",
-        "templateLink": {
-          "uri": "[variables('nestedTemplates').omsAutomation]",
-          "contentVersion": "1.0.0.0"
-        },
-        "parameters": {
-          "omsAutomationAccountName": {
-            "value": "[parameters('omsAutomationAccountName')]"
-          },
-          "omsAutomationRegion": {
-            "value": "[parameters('omsAutomationRegion')]"
-          },
-          "omsRecoveryVaultName": {
-            "value": "[parameters('omsRecoveryVaultName')]"
-          },
-          "omsWorkspaceName": {
-            "value": "[parameters('omsWorkspaceName')]"
-          },
-          "azureAdmin": {
-            "value": "[parameters('azureAdmin')]"
-          },
-          "azureAdminPwd": {
-            "value": "[parameters('azureAdminPwd')]"
-          },
-          "_artifactsLocation": {
-            "value": "[parameters('_artifactsLocation')]"
-          },
-          "_artifactsLocationSasToken": {
-            "value": "[parameters('_artifactsLocationSasToken')]"
           }
         }
       }
