@@ -4,7 +4,7 @@
   "parameters": {
     "rgName": {
       "type":"string",
-      "defaultValue": "rgName"
+      "defaultValue": ""
     },
     "virtualMachineAdminUserName": {
       "defaultValue": "localadmin",
