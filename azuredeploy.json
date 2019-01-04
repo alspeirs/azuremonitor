@@ -587,7 +587,7 @@
     },
     "resourceGroupOutput": {
       "value": "[resourceGroup().name]",
-      "type": "object"
+      "type": "string"
     }
   }
 
