@@ -721,10 +721,6 @@
         }
     ],
     "outputs": {
-      "resourceID": {
-        "type": "string",
-        "value": "[resourceID('Microsoft.OperationalInsights/workspaces', parameters('omsWorkSpaceName'))]"
-      }
 
     }
 }
