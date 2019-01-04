@@ -62,12 +62,6 @@
         "description": "Location for all resources."
       }
     },
-    "omsWorkspaceName": {
-      "type": "string",
-       "metadata": {
-       "description": "Assign a name for the Log Analytic Workspace Name"
-       }
-    },
     "omsWorkspaceRegion": {
       "type": "string",
       "defaultValue": "West Europe",
@@ -102,6 +96,7 @@
     "myVNETSubnet1Name": "Subnet1",
     "myVNETSubnet1Prefix": "10.0.0.0/24",
     "diagnosticStorageAccountName": "[concat('diagst', uniqueString(resourceGroup().id))]",
+    "omsWorkspaceName": "[concat('demowk', uniqueString(resourceGroup().id))]",
     "operatingSystemValues": {
       "Server2012R2": {
         "PublisherValue": "MicrosoftWindowsServer",
@@ -576,7 +571,7 @@
         },
         "parameters": {
           "omsWorkspaceName": {
-            "value": "[parameters('omsWorkspaceName')]"
+            "value": "[variables('omsWorkspaceName')]"
           },
           "omsWorkspaceRegion": {
             "value": "[parameters('omsWorkspaceRegion')]"
