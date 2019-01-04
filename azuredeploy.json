@@ -94,18 +94,6 @@
       "metadata": {
         "description": "The sasToken required to access _artifactsLocation.  When the template is deployed using the accompanying scripts, a sasToken will be automatically generated"
       }
-    },
-    "azureAdmin": {
-      "type": "string",
-      "metadata": {
-        "description": "Enter your service admin user"
-      }
-    },
-    "azureAdminPwd": {
-      "type": "securestring",
-      "metadata": {
-        "description": "Enter the pwd for the service admin user. The pwd is enrypted during runtime and in the Automation assets"
-      }
     }
   },
   "variables": {
