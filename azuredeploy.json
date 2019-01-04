@@ -586,8 +586,8 @@
       "value": "[variables('omsWorkSpaceName')]"
     },
     "resourceGroupOutput": {
-      "value": "[resourceGroup()]",
-      "type": "string"
+      "value": "[resourceGroup().name]",
+      "type": "object"
     }
   }
 
