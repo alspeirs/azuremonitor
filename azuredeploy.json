@@ -121,6 +121,14 @@
   },
   "resources": [
     {
+    "name":"[parameters('rgName')]",
+      "type": "Microsoft.Resources/resourceGroups",
+      "apiVersion": "2018-05-01",
+      "location": "[parameters('location')]",
+      "properties":{
+      }
+    },
+    {
       "name": "[variables('myVNETName')]",
       "type": "Microsoft.Network/virtualNetworks",
       "location": "[parameters('location')]",
