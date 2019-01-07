@@ -113,9 +113,7 @@
     "wadMetricsResourceId": "[resourceId('Microsoft.Compute/virtualMachines', concat(parameters('virtualMachineNamePrefix')))]",
     "nestedTemplates": {
       "omsWorkspace": "[concat(parameters('_artifactsLocation'), '/nestedtemplates/omsWorkspace.json', parameters('_artifactsLocationSasToken'))]"
-    },
-    "enableOMSsetupScriptFolder": "CustomScripts",
-    "enableOMSsetupScriptFileName": "enableOMSsetup.ps1"
+    }
   },
   "resources": [
     {
@@ -504,30 +502,6 @@
             "protectedSettings": {
               "storageAccountName": "[variables('diagnosticStorageAccountName')]",
               "storageAccountKey": "[listkeys(resourceId('Microsoft.Storage/storageAccounts', variables('diagnosticStorageAccountName')), '2016-01-01').keys[0].value]"
-            }
-          }
-        },
-        {
-          "name": "enableOMSsetup",
-          "type": "extensions",
-          "location": "[parameters('location')]",
-          "apiVersion": "2016-03-30",
-          "dependsOn": [
-            "[resourceId('Microsoft.Compute/virtualMachines', concat(parameters('virtualMachineNamePrefix'), copyIndex(1)))]"
-          ],
-          "tags": {
-            "displayName": "enableOMSsetup"
-          },
-          "properties": {
-            "publisher": "Microsoft.Compute",
-            "type": "CustomScriptExtension",
-            "typeHandlerVersion": "1.4",
-            "autoUpgradeMinorVersion": true,
-            "settings": {
-              "fileUris": [
-                "[concat(parameters('_artifactsLocation'), '/', variables('enableOMSsetupScriptFolder'), '/', variables('enableOMSsetupScriptFileName'), parameters('_artifactsLocationSasToken'))]"
-              ],
-              "commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -File ', variables('enableOMSsetupScriptFolder'), '/', variables('enableOMSsetupScriptFileName'))]"
             }
           }
         }
