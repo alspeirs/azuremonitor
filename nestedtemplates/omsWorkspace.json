@@ -34,10 +34,6 @@
                     "marketplaceName": "AgentHealthAssessment"
                 },
                 {
-                    "name": "[concat('ChangeTracking', '(', parameters('omsWorkspaceName'), ')')]",
-                    "marketplaceName": "ChangeTracking"
-                },
-                {
                     "name": "[concat('Updates', '(', parameters('omsWorkspaceName'), ')')]",
                     "marketplaceName": "Updates"
                 },
@@ -46,17 +42,10 @@
                     "marketplaceName": "AzureActivity"
                 },
                 {
-                    "name": "[concat('AzureAutomation', '(', parameters('omsWorkspaceName'), ')')]",
-                    "marketplaceName": "AzureAutomation"
-                },
-                {
-                    "name": "[concat('ADAssessment', '(', parameters('omsWorkspaceName'), ')')]",
-                    "marketplaceName": "ADAssessment"
-                },
-                {
-                    "name": "[concat('SQLAssessment', '(', parameters('omsWorkspaceName'), ')')]",
-                    "marketplaceName": "SQLAssessment"
+                    "name": "[concat('DeviceHealthProd', '(', parameters('omsWorkspaceName'), ')')]",
+                    "marketplaceName": "DeviceHealthProd"
                 }
+                
             ]
         }
     },
