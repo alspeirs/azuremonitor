@@ -91,6 +91,10 @@
     }
   },
   "variables": {
+    "vmExtensionName": "MMAExtension",
+    "vmExtensionPublisher": "Microsoft.EnterpriseCloud.Monitoring",
+    "vmExtensionType": "MicrosoftMonitoringAgent",
+    "vmExtensionTypeHandlerVersion": "1.0",
     "myVNETName": "myVNET",
     "myVNETPrefix": "10.0.0.0/16",
     "myVNETSubnet1Name": "Subnet1",
@@ -555,6 +559,25 @@
       },
       "properties": {
         "publicIPAllocationMethod": "Dynamic"
+      }
+    },
+    {
+      "name": "[concat(parameters('virtualMachineNamePrefix'), '/', variables('vmExtensionName'))]",
+      "type": "Microsoft.Compute/virtualMachines/extensions",
+      "location": "[parameters('location')]",
+      "apiVersion": "2018-06-01",
+      "properties": {
+        "publisher": "[variables('vmExtensionPublisher')]",
+        "type": "[variables('vmExtensionType')]",
+        "typeHandlerVersion": "[variables('vmExtensionTypeHandlerVersion')]",
+        "autoUpgradeMinorVersion": true,
+        "settings": {
+          "workspaceId": "[reference(variables('omsWorkspaceName'), '2015-03-20').customerId]",
+          "stopOnMultipleConnections": "true"
+        },
+        "protectedSettings": {
+          "workspaceKey": "[listKeys(variables('omsWorkspaceName'), '2015-03-20').primarySharedKey]"
+        }
       }
     },
     {
