@@ -566,9 +566,6 @@
       "type": "Microsoft.Compute/virtualMachines/extensions",
       "location": "[parameters('location')]",
       "apiVersion": "2018-06-01",
-      "dependsOn": [
-        "[resourceId('Microsoft.Compute/virtualMachines', concat(parameters('virtualMachineNamePrefix')))]"
-      ],
       "properties": {
         "publisher": "[variables('vmExtensionPublisher')]",
         "type": "[variables('vmExtensionType')]",
