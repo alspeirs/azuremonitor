@@ -72,7 +72,7 @@
         "Australia Southeast"
       ],
       "metadata": {
-       "description": "Specify the region for your Workspace"
+        "description": "Specify the region for your Workspace"
       }
     },
     "_artifactsLocation": {
