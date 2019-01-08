@@ -567,8 +567,7 @@
       "location": "[parameters('location')]",
       "apiVersion": "2018-06-01",
       "dependsOn": [
-        "[resourceId('Microsoft.Compute/virtualMachines', concat(parameters('virtualMachineNamePrefix')))]",
-        "[resourceId('Microsoft.OperationalInsights/workspaces', variables('omsWorkspaceName'))]"
+        "[resourceId('Microsoft.Compute/virtualMachines', concat(parameters('virtualMachineNamePrefix')))]"
       ],
       "properties": {
         "publisher": "[variables('vmExtensionPublisher')]",
