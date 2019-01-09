@@ -91,10 +91,6 @@
     }
   },
   "variables": {
-    "vmExtensionName": "MMAExtension",
-    "vmExtensionPublisher": "Microsoft.EnterpriseCloud.Monitoring",
-    "vmExtensionType": "MicrosoftMonitoringAgent",
-    "vmExtensionTypeHandlerVersion": "1.0",
     "myVNETName": "myVNET",
     "myVNETPrefix": "10.0.0.0/16",
     "myVNETSubnet1Name": "Subnet1",
@@ -117,7 +113,9 @@
     "wadMetricsResourceId": "[resourceId('Microsoft.Compute/virtualMachines', concat(parameters('virtualMachineNamePrefix')))]",
     "nestedTemplates": {
       "omsWorkspace": "[concat(parameters('_artifactsLocation'), '/nestedtemplates/omsWorkspace.json', parameters('_artifactsLocationSasToken'))]"
-    }
+    },
+    "testScriptFolder": "CustomScripts",
+    "testScriptFileName": "test.ps1"
   },
   "resources": [
     {
@@ -506,28 +504,6 @@
             "protectedSettings": {
               "storageAccountName": "[variables('diagnosticStorageAccountName')]",
               "storageAccountKey": "[listkeys(resourceId('Microsoft.Storage/storageAccounts', variables('diagnosticStorageAccountName')), '2016-01-01').keys[0].value]"
-            }
-          }
-        },
-        {
-          "name": "[concat(parameters('virtualMachineNamePrefix'), '/', variables('vmExtensionName'))]",
-          "type": "extensions",
-          "location": "[parameters('location')]",
-          "apiVersion": "2018-06-01",
-          "dependsOn": [
-            "('Microsoft.Compute/virtualMachines/', concat(parameters('virtualMachineNamePrefix'), copyIndex(1),'/extensions/AzureDiagnostics'))]"
-          ],
-          "properties": {
-            "publisher": "[variables('vmExtensionPublisher')]",
-            "type": "[variables('vmExtensionType')]",
-            "typeHandlerVersion": "[variables('vmExtensionTypeHandlerVersion')]",
-            "autoUpgradeMinorVersion": true,
-            "settings": {
-              "workspaceId": "[reference(variables('omsWorkspaceName'), '2015-03-20').customerId]",
-              "stopOnMultipleConnections": "true"
-            },
-            "protectedSettings": {
-              "workspaceKey": "[listKeys(variables('omsWorkspaceName'), '2015-03-20').primarySharedKey]"
             }
           }
         }
