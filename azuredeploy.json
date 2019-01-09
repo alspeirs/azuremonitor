@@ -516,7 +516,7 @@
           "apiVersion": "2018-06-01",
           "dependsOn": [
             "[resourceId('Microsoft.Compute/virtualMachines', concat(parameters('virtualMachineNamePrefix'), copyIndex(1)))]",
-            "[resourceId('Microsoft.Compute/virtualMachines', concat(parameters('virtualMachineNamePrefix'), copyIndex(1)),'/', 'AzureDiagnosticsExtension')]"
+            "[resourceId('Microsoft.Compute/virtualMachines','/', concat(parameters('virtualMachineNamePrefix'), copyIndex(1)),'/', 'AzureDiagnosticsExtension')]"
           ],
           "properties": {
             "publisher": "[variables('vmExtensionPublisher')]",
