@@ -16,7 +16,7 @@
       }
     },
     "virtualMachineNamePrefix": {
-      "defaultValue": "DemoVM",
+      "defaultValue": "WebVM",
       "type": "string",
       "maxLength": 15,
       "metadata": {
@@ -100,6 +100,7 @@
     "webLbId": "[resourceId('Microsoft.Network/loadBalancers',variables('webLbName'))]",
     "webSrvDnsNameforLBIP": "[concat(toLower(parameters('virtualMachineNamePrefix')), 'lb')]",
     "webSrvPublicIP": "[concat(parameters('virtualMachineNamePrefix'), 'websrvpip')]",
+    "webSrvAvailabilitySetName": "[concat(parameters('virtualMachineAdminUserName'), 'webSrvAS')]",
     "frontEndIPConfigID": "[concat(variables('webLbId'),'/frontendIPConfigurations/LoadBalancerFrontEnd')]",
     "lbPoolID": "[concat(variables('webLbId'),'/backendAddressPools/BackendPool1')]",
     "lbProbeID": "[concat(variables('webLbId'),'/probes/tcpProbe')]",
@@ -264,6 +265,9 @@
       "properties": {
         "hardwareProfile": {
           "vmSize": "[parameters('virtualMachineSize')]"
+        },
+        "availabilitySet": {
+          "id": "[resourceId('Microsoft.Compute/availabilitySets',variables('webSrvAvailabilitySetName'))]"
         },
         "storageProfile": {
           "imageReference": {
@@ -603,6 +607,22 @@
           }
         }
       ]
+    },
+    {
+      "apiVersion": "2017-03-30",
+      "type": "Microsoft.Compute/availabilitySets",
+      "location": "[parameters('location')]",
+      "name": "[variables('webSrvAvailabilitySetName')]",
+      "properties": {
+        "PlatformUpdateDomainCount": 20,
+        "PlatformFaultDomainCount": 2
+      },
+      "tags": {
+        "displayName": "WebSrvAvailabilitySet"
+      },
+      "sku": {
+        "name": "Aligned"
+      }
     },
     {
       "type": "Microsoft.Network/networkInterfaces",
