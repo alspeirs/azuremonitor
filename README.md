@@ -22,24 +22,8 @@ The template will enable the following solutions:
 	* Security and Audit
 	* System Update Assessment
 	* Agent Health
+	* Service Map
 
-![alt text](images/la.png "Log Analytics")
-
-Explore a rich list of saved searches within Log Search
-
-![alt text](images/searches.png "Searches")
-
-Explore the Agent Health solution
-
-![alt text](images/agents.png "Agents overview")
-
-Explore the Updates solution
-
-![alt text](images/updates.png "Updates")
-
-Explore the Security solution
-
-![alt text](images/security.png "Security overview")
 
 *This template will be updated to add more capabilities*
 
