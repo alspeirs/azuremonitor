@@ -511,11 +511,10 @@
         },
         {
           "name": "[concat(parameters('virtualMachineNamePrefix'), '/', variables('vmExtensionName'))]",
-          "type": "Microsoft.Compute/virtualMachines/extensions",
+          "type": "extensions",
           "location": "[parameters('location')]",
           "apiVersion": "2018-06-01",
           "dependsOn": [
-            "('Microsoft.Compute/virtualMachines', concat(parameters('virtualMachineNamePrefix'), copyIndex(1)))]",
             "('Microsoft.Compute/virtualMachines/', concat(parameters('virtualMachineNamePrefix'), copyIndex(1),'/extensions/AzureDiagnostics'))]"
           ],
           "properties": {
