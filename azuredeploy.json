@@ -564,6 +564,7 @@
       },
       "dependsOn": [
         "[resourceId('Microsoft.Network/publicIPAddresses', concat(parameters('virtualMachineNamePrefix'), copyIndex(1), '-PIP1'))]",
+        "[resourceId('Microsoft.Network/loadBalancers', variables('loadBalancerName'))]",
         "[resourceId('Microsoft.Network/virtualNetworks/', variables('myVNETName'))]"
       ]
     },
