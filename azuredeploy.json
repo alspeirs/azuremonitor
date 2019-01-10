@@ -675,7 +675,7 @@
       },
       "dependsOn": [
         "[resourceId('Microsoft.Compute/virtualMachines', concat(parameters('virtualMachineNamePrefix'), copyIndex(1)))]",
-        "Microsoft.Compute/virtualMachines/extensions/Microsoft.Insights.VMDiagnosticsSettings')]"
+        "Microsoft.Compute/virtualMachines/extensions/Microsoft.Insights.VMDiagnosticsSettings"
       ],
       "properties": {
         "publisher": "Microsoft.Powershell",
