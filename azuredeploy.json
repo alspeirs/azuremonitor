@@ -105,7 +105,7 @@
     "configurationFunction": "WebServerConfig.ps1\\WebServerConfig",
     "vmExtensionName": "dscExtension",
     "diagnosticStorageAccountName": "[concat('diagst', uniqueString(resourceGroup().id))]",
-    "omsWorkspaceName": "[concat('demowk', uniqueString(resourceGroup().id))]",
+    "omsWorkspaceName": "[concat('monitor', uniqueString(resourceGroup().id))]",
     "operatingSystemValues": {
       "Server2012R2": {
         "PublisherValue": "MicrosoftWindowsServer",
@@ -682,7 +682,7 @@
         "typeHandlerVersion": "2.19",
         "autoUpgradeMinorVersion": true,
         "settings": {
-          "ModulesUrl": "[variables('modulesUrl')]",
+          "ModulesUrl": "https://github.com/aaronlafferty/azuremonitor/blob/master/scripts/WebServerConfig.ps1.zip",
           "SasToken": "",
           "ConfigurationFunction": "[variables('configurationFunction')]",
           "wmfVersion": "4.0",
