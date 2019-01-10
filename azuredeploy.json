@@ -670,9 +670,6 @@
         "name": "webSrvMachineLoop",
         "count": "[parameters('virtualMachineCount')]"
       },
-      "dependsOn": [
-        "Microsoft.Compute/virtualMachines/extensions/Microsoft.Insights.VMDiagnosticsSettings"
-      ],
       "tags": {
         "displayName": "IIS DSC Extension"
       },
