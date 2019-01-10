@@ -688,10 +688,7 @@
       },
       "properties": {
         "publicIPAllocationMethod": "Dynamic",
-        "idleTimeoutInMinutes": 4,
-        "dnsSettings": {
-          "domainNameLabel": "[variables('webSrvDnsNameforLBIP')]"
-        }
+        "idleTimeoutInMinutes": 4
       }
     },
     
