@@ -674,7 +674,8 @@
         "displayName": "IIS DSC Extension"
       },
       "dependsOn": [
-        "[resourceId('Microsoft.Compute/virtualMachines', concat(parameters('virtualMachineNamePrefix'), copyIndex(1)))]"
+        "[resourceId('Microsoft.Compute/virtualMachines', concat(parameters('virtualMachineNamePrefix'), copyIndex(1)))]",
+        "Microsoft.Compute/virtualMachines/extensions/AzureDianostics')]"
       ],
       "properties": {
         "publisher": "Microsoft.Powershell",
