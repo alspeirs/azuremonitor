@@ -671,7 +671,6 @@
         "count": "[parameters('virtualMachineCount')]"
       },
       "dependsOn": [
-        "[concat('Microsoft.Compute/virtualMachines/', parameters('virtualMachineNamePrefix'), copyindex())]",
         "[concat('Microsoft.Compute/virtualMachines/extensions/Microsoft.Insights.VMDiagnosticsSettings')]"
       ],
       "tags": {
