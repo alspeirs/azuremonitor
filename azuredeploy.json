@@ -122,7 +122,9 @@
     "wadMetricsResourceId": "[resourceId('Microsoft.Compute/virtualMachines', concat(parameters('virtualMachineNamePrefix')))]",
     "nestedTemplates": {
       "omsWorkspace": "[concat(parameters('_artifactsLocation'), '/nestedtemplates/omsWorkspace.json', parameters('_artifactsLocationSasToken'))]"
-    }
+    },
+    "IISInstallArchiveFolder": "DSC",
+    "IISInstallArchiveFileName": "IISInstall.zip"
   },
   "resources": [
     {
@@ -529,6 +531,37 @@
               "storageAccountKey": "[listkeys(resourceId('Microsoft.Storage/storageAccounts', variables('diagnosticStorageAccountName')), '2016-01-01').keys[0].value]"
             }
           }
+        },
+        {
+          "name": "Microsoft.Powershell.DSC",
+          "type": "extensions",
+          "location": "[parameters('location')]",
+          "apiVersion": "2016-03-30",
+          "dependsOn": [
+            "[resourceId('Microsoft.Compute/virtualMachines', concat(parameters('virtualMachineNamePrefix'), copyIndex(1)))]"
+          ],
+          "tags": {
+            "displayName": "IISInstall"
+          },
+          "properties": {
+            "publisher": "Microsoft.Powershell",
+            "type": "DSC",
+            "typeHandlerVersion": "2.9",
+            "autoUpgradeMinorVersion": true,
+            "settings": {
+              "configuration": {
+                "url": "[concat(parameters('_artifactsLocation'), '/', variables('IISInstallArchiveFolder'), '/', variables('IISInstallArchiveFileName'))]",
+                "script": "IISInstall.ps1",
+                "function": "Main"
+              },
+              "configurationArguments": {
+                "nodeName": "[concat(parameters('virtualMachineNamePrefix'), copyIndex(1))]"
+              }
+            },
+            "protectedSettings": {
+              "configurationUrlSasToken": "[parameters('_artifactsLocationSasToken')]"
+            }
+          }
         }
       ]
     },
@@ -661,37 +694,7 @@
         }
       }
     },
-    {
-      "type": "Microsoft.Compute/virtualMachines/extensions",
-      "name": "[concat(parameters('virtualMachineNamePrefix'), copyindex(),'/', variables('vmExtensionName'))]",
-      "apiVersion": "2015-06-15",
-      "location": "[parameters('location')]",
-      "copy": {
-        "name": "webSrvMachineLoop",
-        "count": "[parameters('virtualMachineCount')]"
-      },
-      "tags": {
-        "displayName": "IIS DSC Extension"
-      },
-      "dependsOn": [
-        "[resourceId('Microsoft.Compute/virtualMachines', concat(parameters('virtualMachineNamePrefix'), copyIndex(1)))]",
-        "Microsoft.Compute/virtualMachines/extensions/Microsoft.Insights.VMDiagnosticsSettings"
-      ],
-      "properties": {
-        "publisher": "Microsoft.Powershell",
-        "type": "DSC",
-        "typeHandlerVersion": "2.19",
-        "autoUpgradeMinorVersion": true,
-        "settings": {
-          "ModulesUrl": "https://github.com/aaronlafferty/azuremonitor/blob/master/scripts/WebServerConfig.ps1.zip",
-          "SasToken": "",
-          "ConfigurationFunction": "[variables('configurationFunction')]",
-          "wmfVersion": "4.0",
-          "Properties": {}
-        },
-        "protectedSettings": {}
-      }
-    },
+    
     {
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2016-02-01",
