@@ -541,7 +541,7 @@
             "[resourceId('Microsoft.Compute/virtualMachines', concat(parameters('virtualMachineNamePrefix'), copyIndex(1)))]"
           ],
           "tags": {
-            "displayName": "IISInstall"
+            "displayName": "WebServerConfig"
           },
           "properties": {
             "publisher": "Microsoft.Powershell",
@@ -551,7 +551,7 @@
             "settings": {
               "configuration": {
                 "url": "[concat(parameters('_artifactsLocation'), '/', variables('IISInstallArchiveFolder'), '/', variables('IISInstallArchiveFileName'))]",
-                "script": "IISInstall.ps1",
+                "script": "WebServerConfig.ps1",
                 "function": "Main"
               },
               "configurationArguments": {
