@@ -25,7 +25,7 @@
     },
     "virtualMachineCount": {
       "type": "int",
-      "defaultValue": 3,
+      "defaultValue": 2,
       "metadata": {
         "description": "Number of  virtual machines to be created"
       }
