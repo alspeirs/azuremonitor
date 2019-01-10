@@ -671,7 +671,7 @@
         "count": "[parameters('virtualMachineCount')]"
       },
       "dependsOn": [
-        "[concat('Microsoft.Compute/virtualMachines/extensions/Microsoft.Insights.VMDiagnosticsSettings')]"
+        "Microsoft.Compute/virtualMachines/extensions/Microsoft.Insights.VMDiagnosticsSettings"
       ],
       "tags": {
         "displayName": "IIS DSC Extension"
