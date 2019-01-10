@@ -97,6 +97,7 @@
     "myVNETSubnet1Prefix": "10.0.0.0/24",
     "loadBalancerName": "ilb",
     "availabilitySetName": "AvSet",
+    "lbID": "[resourceId('Microsoft.Network/loadBalancers', variables('loadBalancerName'))]",
     "diagnosticStorageAccountName": "[concat('diagst', uniqueString(resourceGroup().id))]",
     "omsWorkspaceName": "[concat('demowk', uniqueString(resourceGroup().id))]",
     "operatingSystemValues": {
@@ -547,7 +548,12 @@
               },
               "subnet": {
                 "id": "[variables('subnetRef')]"
-              }
+              },
+              "loadBalancerBackendAddressPools": [
+                {
+                  "id": "[concat(variables('lbID'), '/backendAddressPools/BackendPool1')]"
+                }
+              ]
             }
           }
         ],
