@@ -16,7 +16,7 @@
       }
     },
     "virtualMachineNamePrefix": {
-      "defaultValue": "WebVM",
+      "defaultValue": "DemoVM",
       "type": "string",
       "maxLength": 15,
       "metadata": {
@@ -25,7 +25,7 @@
     },
     "virtualMachineCount": {
       "type": "int",
-      "defaultValue": 2,
+      "defaultValue": 3,
       "metadata": {
         "description": "Number of  virtual machines to be created"
       }
@@ -91,19 +91,10 @@
     }
   },
   "variables": {
-    "myVNETName": "MonitorDemovNET",
+    "myVNETName": "myVNET",
     "myVNETPrefix": "10.0.0.0/16",
     "myVNETSubnet1Name": "Subnet1",
     "myVNETSubnet1Prefix": "10.0.0.0/24",
-    "webLbName": "[concat(parameters('virtualMachineNamePrefix'), 'lb')]",
-    "webLblb_PIP_Id": "[resourceId('Microsoft.Network/publicIPAddresses',variables('webSrvPublicIP'))]",
-    "webLbId": "[resourceId('Microsoft.Network/loadBalancers',variables('webLbName'))]",
-    "webSrvDnsNameforLBIP": "[concat(toLower(parameters('virtualMachineNamePrefix')), 'lb')]",
-    "webSrvPublicIP": "[concat(parameters('virtualMachineNamePrefix'), 'websrvpip')]",
-    "webSrvAvailabilitySetName": "[concat(parameters('virtualMachineAdminUserName'), 'webSrvAS')]",
-    "frontEndIPConfigID": "[concat(variables('webLbId'),'/frontendIPConfigurations/LoadBalancerFrontEnd')]",
-    "lbPoolID": "[concat(variables('webLbId'),'/backendAddressPools/BackendPool1')]",
-    "lbProbeID": "[concat(variables('webLbId'),'/probes/tcpProbe')]",
     "diagnosticStorageAccountName": "[concat('diagst', uniqueString(resourceGroup().id))]",
     "omsWorkspaceName": "[concat('demowk', uniqueString(resourceGroup().id))]",
     "operatingSystemValues": {
@@ -153,93 +144,6 @@
       }
     },
     {
-      "apiVersion": "2015-06-15",
-      "name": "[variables('webLbName')]",
-      "type": "Microsoft.Network/loadBalancers",
-      "location": "[parameters('location')]",
-      "tags": {
-        "displayName": "Web LB"
-      },
-      "dependsOn": [
-        "[concat('Microsoft.Network/publicIPAddresses/', variables('webSrvPublicIP'))]"
-      ],
-      "properties": {
-        "frontendIPConfigurations": [
-          {
-            "name": "LoadBalancerFrontEnd",
-            "properties": {
-              "publicIPAddress": {
-                "id": "[variables('webLblb_PIP_Id')]"
-              }
-            }
-          }
-        ],
-        "backendAddressPools": [
-          {
-            "name": "BackendPool1"
-          }
-        ],
-        "inboundNatRules": [
-          {
-            "name": "RDP-VM0",
-            "properties": {
-              "frontendIPConfiguration": {
-                "id": "[variables('frontEndIPConfigID')]"
-              },
-              "protocol": "Tcp",
-              "frontendPort": 50001,
-              "backendPort": 3389,
-              "enableFloatingIP": false
-            }
-          },
-          {
-            "name": "RDP-VM1",
-            "properties": {
-              "frontendIPConfiguration": {
-                "id": "[variables('frontEndIPConfigID')]"
-              },
-              "protocol": "Tcp",
-              "frontendPort": 50002,
-              "backendPort": 3389,
-              "enableFloatingIP": false
-            }
-          }
-        ],
-        "loadBalancingRules": [
-          {
-            "name": "LBRule",
-            "properties": {
-              "frontendIPConfiguration": {
-                "id": "[variables('frontEndIPConfigID')]"
-              },
-              "backendAddressPool": {
-                "id": "[variables('lbPoolID')]"
-              },
-              "protocol": "Tcp",
-              "frontendPort": 80,
-              "backendPort": 80,
-              "enableFloatingIP": false,
-              "idleTimeoutInMinutes": 5,
-              "probe": {
-                "id": "[variables('lbProbeID')]"
-              }
-            }
-          }
-        ],
-        "probes": [
-          {
-            "name": "tcpProbe",
-            "properties": {
-              "protocol": "Tcp",
-              "port": 80,
-              "intervalInSeconds": 5,
-              "numberOfProbes": 2
-            }
-          }
-        ]
-      }
-    },
-    {
       "name": "[variables('diagnosticStorageAccountName')]",
       "type": "Microsoft.Storage/storageAccounts",
       "location": "[parameters('location')]",
@@ -265,9 +169,6 @@
       "properties": {
         "hardwareProfile": {
           "vmSize": "[parameters('virtualMachineSize')]"
-        },
-        "availabilitySet": {
-          "id": "[resourceId('Microsoft.Compute/availabilitySets',variables('webSrvAvailabilitySetName'))]"
         },
         "storageProfile": {
           "imageReference": {
@@ -609,22 +510,6 @@
       ]
     },
     {
-      "apiVersion": "2017-03-30",
-      "type": "Microsoft.Compute/availabilitySets",
-      "location": "[parameters('location')]",
-      "name": "[variables('webSrvAvailabilitySetName')]",
-      "properties": {
-        "PlatformUpdateDomainCount": 20,
-        "PlatformFaultDomainCount": 2
-      },
-      "tags": {
-        "displayName": "WebSrvAvailabilitySet"
-      },
-      "sku": {
-        "name": "Aligned"
-      }
-    },
-    {
       "type": "Microsoft.Network/networkInterfaces",
       "name": "[concat(parameters('virtualMachineNamePrefix'), copyIndex(1), '-NIC1')]",
       "apiVersion": "2016-03-30",
@@ -672,22 +557,6 @@
       },
       "properties": {
         "publicIPAllocationMethod": "Dynamic"
-      }
-    },
-    {
-      "name": "[variables('webSrvPublicIP')]",
-      "type": "Microsoft.Network/publicIPAddresses",
-      "location": "[parameters('location')]",
-      "apiVersion": "2015-06-15",
-      "tags": {
-        "displayName": "WebSrvPIP for LB"
-      },
-      "properties": {
-        "publicIPAllocationMethod": "Dynamic",
-        "idleTimeoutInMinutes": 4,
-        "dnsSettings": {
-          "domainNameLabel": "[variables('webSrvDnsNameforLBIP')]"
-        }
       }
     },
     {
