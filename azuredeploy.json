@@ -124,7 +124,7 @@
       "omsWorkspace": "[concat(parameters('_artifactsLocation'), '/nestedtemplates/omsWorkspace.json', parameters('_artifactsLocationSasToken'))]"
     },
     "IISInstallArchiveFolder": "DSC",
-    "IISInstallArchiveFileName": "IISInstall.zip"
+    "IISInstallArchiveFileName": "WebServerConfig.ps1.zip"
   },
   "resources": [
     {
