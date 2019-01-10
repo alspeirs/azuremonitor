@@ -576,7 +576,7 @@
               "subnet": {
                 "id": "[variables('subnetRef')]"
               },
-              "privateIPAddress": "10.0.2.6",
+              "privateIPAddress": "10.0.0.200",
               "privateIPAllocationMethod": "Static"
             },
             "name": "LoadBalancerFrontend"
