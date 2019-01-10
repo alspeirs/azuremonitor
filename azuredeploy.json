@@ -97,6 +97,9 @@
     "myVNETSubnet1Prefix": "10.0.0.0/24",
     "loadBalancerName": "ilb",
     "availabilitySetName": "AvSet",
+    "nlbPIP": "[concat(variables('loadBalancerName'), 'PIP')]",
+    "webLblb_PIP_Id": "[resourceId('Microsoft.Network/publicIPAddresses',variables('nlbPIP'))]",
+    "webSrvDnsNameforLBIP": "[concat(toLower(variables('loadBalancerName')), 'webapp')]",
     "lbID": "[resourceId('Microsoft.Network/loadBalancers', variables('loadBalancerName'))]",
     "diagnosticStorageAccountName": "[concat('diagst', uniqueString(resourceGroup().id))]",
     "omsWorkspaceName": "[concat('demowk', uniqueString(resourceGroup().id))]",
@@ -580,11 +583,9 @@
         "frontendIPConfigurations": [
           {
             "properties": {
-              "subnet": {
-                "id": "[variables('subnetRef')]"
-              },
-              "privateIPAddress": "10.0.0.200",
-              "privateIPAllocationMethod": "Static"
+              "publicIPAddress": {
+                "id": "[variables('webLblb_PIP_Id')]"
+              }
             },
             "name": "LoadBalancerFrontend"
           }
@@ -641,6 +642,22 @@
       },
       "properties": {
         "publicIPAllocationMethod": "Dynamic"
+      }
+    },
+    {
+      "name": "[variables('nlbPIP')]",
+      "type": "Microsoft.Network/publicIPAddresses",
+      "location": "[parameters('location')]",
+      "apiVersion": "2015-06-15",
+      "tags": {
+        "displayName": "WebSrvPIP for LB"
+      },
+      "properties": {
+        "publicIPAllocationMethod": "Dynamic",
+        "idleTimeoutInMinutes": 4,
+        "dnsSettings": {
+          "domainNameLabel": "[variables('webSrvDnsNameforLBIP')]"
+        }
       }
     },
     {
