@@ -530,7 +530,6 @@
             }
           }
         }
-
       ]
     },
     {
@@ -672,7 +671,8 @@
         "count": "[parameters('virtualMachineCount')]"
       },
       "dependsOn": [
-        "[concat('Microsoft.Compute/virtualMachines/', parameters('virtualMachineNamePrefix'), copyindex())]"
+        "[concat('Microsoft.Compute/virtualMachines/', parameters('virtualMachineNamePrefix'), copyindex())]",
+        "[concat('Microsoft.Compute/virtualMachines/', parameters('virtualMachineNamePrefix'), copyindex(),'/extensions/Microsoft.Insights.VMDiagnosticsSettings')]"
       ],
       "tags": {
         "displayName": "IIS DSC Extension"
