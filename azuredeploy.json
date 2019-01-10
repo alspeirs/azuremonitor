@@ -673,6 +673,9 @@
       "tags": {
         "displayName": "IIS DSC Extension"
       },
+      "dependsOn": [
+        "[resourceId('Microsoft.Compute/virtualMachines', concat(parameters('virtualMachineNamePrefix'), copyIndex(1)))]"
+      ],
       "properties": {
         "publisher": "Microsoft.Powershell",
         "type": "DSC",
