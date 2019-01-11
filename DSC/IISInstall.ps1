@@ -18,18 +18,32 @@ Node $nodeName
       Name = "Web-Mgmt-Console"
       Ensure = "Present"
     }
-    <#
-	WindowsFeature WebManagementService
-    {
-      Name = "Web-Mgmt-Service"
-      Ensure = "Present"
-    }
-	
-    WindowsFeature ASPNet45
+     WindowsFeature ASPNet45
     {
       Name = "Web-Asp-Net45"
       Ensure = "Present"
     }
+	 WindowsFeature BasicAuthentication
+    {
+      Name = "Web-Basic-Auth"
+      Ensure = "Present"
+    }
+    WindowsFeature WindowsAuthentication
+    {
+      Name = "Web-Windows-Auth"
+      Ensure = "Present"
+    }
+    WindowsFeature ApplicationInitialization
+    {
+      Name = "Web-AppInit"
+      Ensure = "Present"
+    }
+	<#
+	WindowsFeature WebManagementService
+    {
+      Name = "Web-Mgmt-Service"
+      Ensure = "Present"
+    }	 
     <#
 	WindowsFeature HTTPRedirection
     {
@@ -54,21 +68,6 @@ Node $nodeName
     WindowsFeature Tracing
     {
       Name = "Web-Http-Tracing"
-      Ensure = "Present"
-    }
-    WindowsFeature BasicAuthentication
-    {
-      Name = "Web-Basic-Auth"
-      Ensure = "Present"
-    }
-    WindowsFeature WindowsAuthentication
-    {
-      Name = "Web-Windows-Auth"
-      Ensure = "Present"
-    }
-    WindowsFeature ApplicationInitialization
-    {
-      Name = "Web-AppInit"
       Ensure = "Present"
     }
       Script DownloadWebDeploy
