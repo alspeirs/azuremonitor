@@ -6,9 +6,11 @@ Param ( [string] $nodeName )
 Import-DscResource -ModuleName PSDesiredStateConfiguration
 
 Node $nodeName
-  {
+  { 
+  
+  Install-WindowsFeature -Name Web-Server -IncludeAllSubFeature
    <# This commented section represents an example configuration that can be updated as required.
-    WindowsFeature WebServerRole #>
+    WindowsFeature WebServerRole
     {
       Name = "Web-Server"
       Ensure = "Present"
@@ -38,13 +40,13 @@ Node $nodeName
       Name = "Web-AppInit"
       Ensure = "Present"
     }
-	<#
+	
 	WindowsFeature WebManagementService
     {
       Name = "Web-Mgmt-Service"
       Ensure = "Present"
     }	 
-    <#
+    
 	WindowsFeature HTTPRedirection
     {
       Name = "Web-Http-Redirect"
