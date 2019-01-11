@@ -18,17 +18,20 @@ Node $nodeName
       Name = "Web-Mgmt-Console"
       Ensure = "Present"
     }
-    WindowsFeature WebManagementService
+    <#
+	WindowsFeature WebManagementService
     {
       Name = "Web-Mgmt-Service"
       Ensure = "Present"
     }
+	
     WindowsFeature ASPNet45
     {
       Name = "Web-Asp-Net45"
       Ensure = "Present"
     }
-    WindowsFeature HTTPRedirection
+    <#
+	WindowsFeature HTTPRedirection
     {
       Name = "Web-Http-Redirect"
       Ensure = "Present"
@@ -68,7 +71,7 @@ Node $nodeName
       Name = "Web-AppInit"
       Ensure = "Present"
     }
-  <#  Script DownloadWebDeploy
+      Script DownloadWebDeploy
     {
         TestScript = {
             Test-Path "C:\WindowsAzure\WebDeploy_amd64_en-US.msi"
