@@ -124,7 +124,7 @@
       "omsWorkspace": "[concat(parameters('_artifactsLocation'), '/nestedtemplates/omsWorkspace.json', parameters('_artifactsLocationSasToken'))]"
     },
     "IISInstallArchiveFolder": "DSC",
-    "IISInstallArchiveFileName": "IISInstall.zip"
+    "IISInstallArchiveFileName": "WebServerConfig.ps1.zip"
   },
   "resources": [
     {
@@ -551,8 +551,8 @@
             "settings": {
               "configuration": {
                 "url": "[concat(parameters('_artifactsLocation'), '/', variables('IISInstallArchiveFolder'), '/', variables('IISInstallArchiveFileName'))]",
-                "script": "IISInstall.ps1",
-                "function": "Main"
+                "script": "WebServerConfig.ps1",
+                "function": "WebServerConfig"
               },
               "configurationArguments": {
                 "nodeName": "[concat(parameters('virtualMachineNamePrefix'), copyIndex(1))]"
