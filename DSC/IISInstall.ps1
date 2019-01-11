@@ -68,7 +68,7 @@ Node $nodeName
       Name = "Web-AppInit"
       Ensure = "Present"
     }
-    Script DownloadWebDeploy
+  <#  Script DownloadWebDeploy
     {
         TestScript = {
             Test-Path "C:\WindowsAzure\WebDeploy_amd64_en-US.msi"
@@ -96,6 +96,6 @@ Node $nodeName
         StartupType = "Automatic"
         State = "Running"
         DependsOn = "[Package]InstallWebDeploy"
-    }
+    }#>
   }
 }
