@@ -62,6 +62,9 @@
         "description": "Location for all resources."
       }
     },
+    "nlbsku": {
+      "type": "string"
+    },
     "omsWorkspaceRegion": {
       "type": "string",
       "defaultValue": "East US",
@@ -610,6 +613,9 @@
       "type": "Microsoft.Network/loadBalancers",
       "name": "[variables('loadBalancerName')]",
       "location": "[parameters('location')]",
+      "sku": {
+        "name": "[parameters('nlbsku')]"
+      },
       "dependsOn": [
         "[variables('myVNETName')]"
       ],
