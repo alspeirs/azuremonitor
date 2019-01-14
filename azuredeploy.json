@@ -91,13 +91,13 @@
     }
   },
   "variables": {
-    "myVNETName": "myVNET",
+    "myVNETName": "VirtualNetwork",
     "myVNETPrefix": "10.0.0.0/16",
     "myVNETSubnet1Name": "Subnet1",
     "myVNETSubnet1Prefix": "10.0.0.0/24",
-    "loadBalancerName": "ilb",
-    "availabilitySetName": "AvSet",
-    "nlbPIP": "[concat(variables('loadBalancerName'), uniqueString(resourceGroup().id))]",
+    "loadBalancerName": "webapp-nlb",
+    "availabilitySetName": "WebAppAvSet",
+    "nlbPIP": "webapp-nlb-pip",
     "webLblb_PIP_Id": "[resourceId('Microsoft.Network/publicIPAddresses',variables('nlbPIP'))]",
     "webSrvDnsNameforLBIP": "[concat(toLower(variables('loadBalancerName')), 'webapp')]",
     "lbID": "[resourceId('Microsoft.Network/loadBalancers', variables('loadBalancerName'))]",
@@ -105,7 +105,7 @@
     "configurationFunction": "WebServerConfig.ps1\\WebServerConfig",
     "vmExtensionName": "dscExtension",
     "diagnosticStorageAccountName": "[concat('diagst', uniqueString(resourceGroup().id))]",
-    "omsWorkspaceName": "[concat('monitor', uniqueString(resourceGroup().id))]",
+    "omsWorkspaceName": "LogAnalyticsWorkSpace",
     "operatingSystemValues": {
       "Server2012R2": {
         "PublisherValue": "MicrosoftWindowsServer",
