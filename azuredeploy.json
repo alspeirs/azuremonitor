@@ -105,7 +105,7 @@
     "configurationFunction": "WebServerConfig.ps1\\WebServerConfig",
     "vmExtensionName": "dscExtension",
     "diagnosticStorageAccountName": "[concat('diagst', uniqueString(resourceGroup().id))]",
-    "omsWorkspaceName": "LogAnalyticsWorkSpace",
+    "omsWorkspaceName": "[concat('loganalytics-', uniqueString(resourceGroup().id))]",
     "operatingSystemValues": {
       "Server2012R2": {
         "PublisherValue": "MicrosoftWindowsServer",
