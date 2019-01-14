@@ -24,6 +24,8 @@ The template will enable the following solutions:
 	* Agent Health
 	* Service Map
 
+### Refer to the githubdoc.docx in the docs folder for post deployment setup tasks
+
 
 *This template will be updated to add more capabilities*
 
