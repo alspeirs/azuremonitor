@@ -672,6 +672,9 @@
       "type": "Microsoft.Network/publicIPAddresses",
       "name": "[concat(parameters('virtualMachineNamePrefix'), copyIndex(1), '-PIP1')]",
       "location": "[parameters('location')]",
+      "sku": {
+        "name": "[variables('pipsku')]"
+      },
       "copy": {
         "name": "PIPCopy",
         "count": "[parameters('virtualMachineCount')]"
