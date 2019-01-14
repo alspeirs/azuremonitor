@@ -687,7 +687,7 @@
       "name": "[variables('nlbPIP')]",
       "type": "Microsoft.Network/publicIPAddresses",
       "location": "[parameters('location')]",
-      "apiVersion": "2015-06-15",
+      "apiVersion": "2017-08-01",
       "sku": {
         "name": "[variables('pipsku')]"
       },
