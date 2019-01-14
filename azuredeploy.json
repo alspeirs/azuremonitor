@@ -64,7 +64,7 @@
     },
     "omsWorkspaceRegion": {
       "type": "string",
-      "defaultValue": "eastus2",
+      "defaultValue": "East US 2",
       "allowedValues": [
         "East US",
         "East US 2",
