@@ -699,7 +699,6 @@
         "idleTimeoutInMinutes": 4
       }
     },
-    
     {
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2016-02-01",
