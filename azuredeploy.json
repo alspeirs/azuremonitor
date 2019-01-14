@@ -570,7 +570,7 @@
     {
       "type": "Microsoft.Network/networkInterfaces",
       "name": "[concat(parameters('virtualMachineNamePrefix'), copyIndex(1), '-NIC1')]",
-      "apiVersion": "2016-03-30",
+      "apiVersion": "2017-08-01",
       "location": "[parameters('location')]",
       "copy": {
         "name": "NICCopy",
