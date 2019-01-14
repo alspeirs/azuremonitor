@@ -62,10 +62,6 @@
         "description": "Location for all resources."
       }
     },
-    "nlbsku": {
-      "type": "string",
-      "defaultValue": "Standard"
-    },
     "omsWorkspaceRegion": {
       "type": "string",
       "defaultValue": "East US",
@@ -122,6 +118,7 @@
         "SkuValue": "2016-Datacenter"
       }
     },
+    "nlbsku": "Standard",
     "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('myVNETName'),  variables('myVNETSubnet1Name'))]",
     "wadMetricsResourceId": "[resourceId('Microsoft.Compute/virtualMachines', concat(parameters('virtualMachineNamePrefix')))]",
     "nestedTemplates": {
@@ -615,7 +612,7 @@
       "name": "[variables('loadBalancerName')]",
       "location": "[parameters('location')]",
       "sku": {
-        "name": "[parameters('nlbsku')]"
+        "name": "[variables('nlbsku')]"
       },
       "dependsOn": [
         "[variables('myVNETName')]"
