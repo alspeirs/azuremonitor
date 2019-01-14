@@ -651,7 +651,7 @@
               "backendPort": 80,
               "idleTimeoutInMinutes": 15
             },
-            "Name": "lbrule"
+            "Name": "httprule"
           },
           {
             "properties": {
@@ -669,7 +669,7 @@
               "backendPort": 3389,
               "idleTimeoutInMinutes": 15
             },
-            "Name": "lbrule"
+            "Name": "3389rule"
           }
         ],
         "probes": [
