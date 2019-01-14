@@ -695,8 +695,9 @@
         "displayName": "WebSrvPIP for LB"
       },
       "properties": {
-        "publicIPAllocationMethod": "Dynamic",
-        "idleTimeoutInMinutes": 4
+        "publicIPAllocationMethod": "Static",
+        "idleTimeoutInMinutes": 4,
+        "publicIpAddressVersion": "IPv4"
       }
     },
     {
