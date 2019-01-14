@@ -158,7 +158,7 @@
       "type": "Microsoft.Network/networkSecurityGroups",
       "name": "Webapp-NSG",
       "apiVersion": "2018-10-01",
-      "location": "eastus2",
+      "location": "[parameters('location')]",
       "properties": {
         "securityRules": [
           {
