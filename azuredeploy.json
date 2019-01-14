@@ -118,7 +118,6 @@
         "SkuValue": "2016-Datacenter"
       }
     },
-    "nlbsku": "Standard",
     "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('myVNETName'),  variables('myVNETSubnet1Name'))]",
     "wadMetricsResourceId": "[resourceId('Microsoft.Compute/virtualMachines', concat(parameters('virtualMachineNamePrefix')))]",
     "nestedTemplates": {
@@ -611,9 +610,6 @@
       "type": "Microsoft.Network/loadBalancers",
       "name": "[variables('loadBalancerName')]",
       "location": "[parameters('location')]",
-      "sku": {
-        "name": "[variables('nlbsku')]"
-      },
       "dependsOn": [
         "[variables('myVNETName')]"
       ],
