@@ -680,7 +680,7 @@
         "displayName": "[concat(parameters('virtualMachineNamePrefix'), copyIndex(1), '-PIP1')]"
       },
       "properties": {
-        "publicIPAllocationMethod": "Dynamic"
+        "publicIPAllocationMethod": "Static"
       }
     },
     {
