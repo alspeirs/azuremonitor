@@ -63,7 +63,8 @@
       }
     },
     "nlbsku": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "Standard"
     },
     "omsWorkspaceRegion": {
       "type": "string",
