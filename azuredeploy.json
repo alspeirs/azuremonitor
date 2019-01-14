@@ -16,7 +16,7 @@
       }
     },
     "virtualMachineNamePrefix": {
-      "defaultValue": "DemoVM",
+      "defaultValue": "WebApp",
       "type": "string",
       "maxLength": 15,
       "metadata": {
