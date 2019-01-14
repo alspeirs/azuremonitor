@@ -67,7 +67,6 @@
       "defaultValue": "East US",
       "allowedValues": [
         "East US",
-        "East US 2",
         "West Europe",
         "Southeast Asia",
         "Australia Southeast"
