@@ -88,6 +88,13 @@
       "metadata": {
         "description": "The sasToken required to access _artifactsLocation.  When the template is deployed using the accompanying scripts, a sasToken will be automatically generated"
       }
+    },
+    "automationAccountName":{
+      "type": "string",
+      "defaultValue": "AlertAutomation"
+    },
+    "emailAddress":{
+      "type": "string"
     }
   },
   "variables": {
@@ -902,6 +909,13 @@
           }
         }
       }
+    },
+    {
+      "name": "[parameters('automationAccountName')]",
+      "type": "Microsoft.Automation/automationAccounts",
+      "apiVersion": "2015-10-31",
+      "properties": {},
+      "location": "[parameters('location')]"
     }
   ],
   "outputs": {
