@@ -13,6 +13,9 @@
     },
     "virtualMachineAdminPassword": {
       "value": null
+    },
+    "emailAddress": {
+      "value": null
     }
   }
 }
