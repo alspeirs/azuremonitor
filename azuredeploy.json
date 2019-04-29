@@ -731,7 +731,34 @@
               "configurationUrlSasToken": "[parameters('_artifactsLocationSasToken')]"
             }
           }
-        }
+        },
+        {
+          "apiVersion": "2018-06-01",
+          "type": "Microsoft.Compute/virtualMachines/extensions",
+          "name": "config-webapp",
+          "location": "[resourceGroup().location]",
+          "dependsOn": [
+            "[resourceId('Microsoft.Compute/virtualMachines', concat(parameters('virtualMachineNamePrefix'), copyIndex(1)))]"
+        
+          ],
+          "tags": {
+              "displayName": "config-webapp"
+          },
+          "properties": {
+              "publisher": "Microsoft.Compute",
+              "type": "CustomScriptExtension",
+              "typeHandlerVersion": "1.9",
+              "autoUpgradeMinorVersion": true,
+              "settings": {
+                  "fileUris": [
+                      "https://raw.githubusercontent.com/aaronlafferty/azuremonitor/master/webserver/copySite.ps1"
+                  ]
+              },
+              "protectedSettings": {
+                  "commandToExecute": "powershell -ExecutionPolicy Unrestricted -File copySite.ps1"
+              }
+          }
+      }
       ]
     },
     {
@@ -916,6 +943,55 @@
       "apiVersion": "2015-10-31",
       "properties": {},
       "location": "[parameters('location')]"
+    },
+    {
+      "name": "webAppRestart",
+      "type": "Microsoft.Automation/automationAccounts/runbooks",
+      "apiVersion": "2018-06-30",
+      "dependsOn":"[concat('Microsoft.Automation/automationAccounts/', parameters('automationAccountName'))]",
+      "properties": {
+        "runbookType": "PowerShell",
+        "publishContentLink": {
+          "uri": "https://raw.githubusercontent.com/aaronlafferty/azuremonitor/master/runbooks/webAppRestart.ps1"
+        },
+        "description": "Restarts webapp"
+      }
+    },
+    {
+      "name": "Email Alert 1",
+      "type": "microsoft.insights/actionGroups",
+      "apiVersion": "2018-09-01",
+      "location": "[parameters('location')]",
+      "tags": {},
+      "properties": {
+        "groupShortName": "Email",
+        "enabled": true,
+        "emailReceivers": [
+          {
+            "name": "Alert Email",
+            "emailAddress": "[parameters('emailAddress')]"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Runbook Restart",
+      "type": "microsoft.insights/actionGroups",
+      "apiVersion": "2018-09-01",
+      "location": "[parameters('location')]",
+      "tags": {},
+      "properties": {
+        "groupShortName": "Restart",
+        "enabled": false,
+        "automationRunbookReceivers": [
+          {
+            "automationAccountId": "[resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccountName'))]",
+            "runbookName": "webAppRestart",
+            "webhookResourceId": "[resourceId('Microsoft.Automation/automationAccounts/runbooks', 'webAppRestart')]",
+            "isGlobalRunbook": true
+          }
+        ]
+      }
     }
   ],
   "outputs": {
