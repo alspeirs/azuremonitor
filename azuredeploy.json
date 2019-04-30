@@ -746,7 +746,8 @@
           "name": "config-webapp",
           "location": "[resourceGroup().location]",
           "dependsOn": [
-            "[resourceId('Microsoft.Compute/virtualMachines', concat(parameters('virtualMachineNamePrefix'), copyIndex(1)))]"
+            "[resourceId('Microsoft.Compute/virtualMachines', concat(parameters('virtualMachineNamePrefix'), copyIndex(1)))]",
+            "[resourceId('Microsoft.Compute/virtualMachines', concat(parameters('virtualMachineNamePrefix'), copyIndex(1)), '/extensions/Microsoft.Powershell.DSC')]"
         
           ],
           "tags": {
@@ -1047,7 +1048,7 @@
           },
           "actions": [
               {
-                  "actionGroupId": "[parameters('NLBAlertName')]",
+                  "actionGroupId": "[resourceId('microsoft.insights/actionGroups', parameters('NLBAlertName'))]",
                   "webHookProperties": {}
               }
           ]
