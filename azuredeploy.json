@@ -142,8 +142,7 @@
       "omsWorkspace": "[concat(parameters('_artifactsLocation'), '/nestedtemplates/omsWorkspace.json', parameters('_artifactsLocationSasToken'))]"
     },
     "IISInstallArchiveFolder": "DSC",
-    "IISInstallArchiveFileName": "IISInstall.zip",
-    "vmname": "[concat(parameters('virtualMachineNamePrefix'), copyIndex(1))]"
+    "IISInstallArchiveFileName": "IISInstall.zip"
   },
   "resources": [
     {
