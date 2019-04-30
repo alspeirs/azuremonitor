@@ -954,8 +954,8 @@
       "resources": [
         {
           "name": "webAppRestart",
-          "type": "Microsoft.Automation/automationAccounts/runbooks",
-          "apiVersion": "2018-06-30",
+          "type": "runbooks",
+          "apiVersion": "2015-10-31",
           "dependsOn": [
               "[resourceId('Microsoft.Automation/automationAccounts/', parameters('automationAccountName'))]"
           ],
