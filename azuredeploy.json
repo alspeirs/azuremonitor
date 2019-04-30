@@ -962,9 +962,11 @@
           "type":"webhooks",
           "apiVersion": "2015-10-31",
           "dependsOn": [
-            "[resourceId('Microsoft.Automation/automationAccounts/', parameters('automationAccountName'))]"
+            "[resourceId('Microsoft.Automation/automationAccounts/', parameters('automationAccountName'))]",
+            "[concat('Microsoft.Automation/automationAccounts/', parameters('automationAccountName'), '/runbooks/webAppRestart')]"
         ],
           "properties": {
+            "isEnabled":true,
             "runbook": {
               "name": "webAppRestart"
             }
