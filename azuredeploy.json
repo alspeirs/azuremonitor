@@ -961,6 +961,9 @@
           "name": "runbookWebhook",
           "type":"webhooks",
           "apiVersion": "2015-10-31",
+          "dependsOn": [
+            "[resourceId('Microsoft.Automation/automationAccounts/', parameters('automationAccountName'))]"
+        ],
           "properties": {
             "runbook": {
               "name": "webAppRestart"
