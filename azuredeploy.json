@@ -976,6 +976,9 @@
         {
           "name": "runbookWebhook",
           "type": "webhooks",
+          "dependson":[
+            "[resourceId('Microsoft.Automation/automationAccounts/', parameters('automationAccountName'))]"
+          ],
           "apiVersion": "2015-10-31",
           "properties": {
             "runbook": {
