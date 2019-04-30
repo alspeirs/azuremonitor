@@ -949,23 +949,25 @@
       "name": "[parameters('automationAccountName')]",
       "type": "Microsoft.Automation/automationAccounts",
       "apiVersion": "2015-10-31",
+      "location": "[resourceGroup().location]",
       "properties": {},
-      "location": "[parameters('location')]"
-    },
-    {
-      "name": "webAppRestart",
-      "type": "Microsoft.Automation/automationAccounts/runbooks",
-      "apiVersion": "2018-06-30",
-      "dependsOn": [
-        "[resourceId('Microsoft.Automation/automationAccounts/', parameters('automationAccountName'))]"
-      ],
-      "properties": {
-        "runbookType": "PowerShell",
-        "publishContentLink": {
-          "uri": "https://raw.githubusercontent.com/aaronlafferty/azuremonitor/master/runbooks/webAppRestart.ps1"
-        },
-        "description": "Restarts webapp"
-      }
+      "resources": [
+        {
+          "name": "webAppRestart",
+          "type": "Microsoft.Automation/automationAccounts/runbooks",
+          "apiVersion": "2018-06-30",
+          "dependsOn": [
+              "[resourceId('Microsoft.Automation/automationAccounts/', parameters('automationAccountName'))]"
+          ],
+          "properties": {
+            "runbookType": "PowerShell",
+            "description": "Restarts WebApp",
+            "publishContentLink": {
+              "uri": "https://raw.githubusercontent.com/aaronlafferty/azuremonitor/master/runbooks/webAppRestart.ps1"
+            }
+          }
+        }
+      ]
     },
     {
       "name": "Email Alert 1",
