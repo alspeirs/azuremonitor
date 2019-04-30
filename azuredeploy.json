@@ -1012,27 +1012,6 @@
       }
   },
     {
-      "name": "RunbookRestart",
-      "type": "microsoft.insights/actionGroups",
-      "apiVersion": "2018-09-01",
-      "location": "Global",
-      "dependsOn": [
-        "[resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccountName'))]"
-      ],
-      "tags": {},
-      "properties": {
-        "groupShortName": "Restart",
-        "enabled": false,
-        "automationRunbookReceivers": [
-          {
-            "automationAccountId": "[resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccountName'))]",
-            "runbookName": "webAppRestart",
-            "isGlobalRunbook": true
-          }
-        ]
-      }
-    },
-    {
       "type": "microsoft.Insights/metricAlerts",
       "apiVersion": "2018-03-01",
       "name": "[parameters('metricAlerts_NLB')]",
@@ -1042,7 +1021,7 @@
           "[resourceId('microsoft.insights/actionGroups', parameters('NLBAlertName'))]"
       ],
       "properties": {
-          "description": "Fires when probe avergae is less than 80%",
+          "description": "Fires when probe average is less than 80%",
           "severity": 3,
           "enabled": true,
           "scopes": [
