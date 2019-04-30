@@ -95,6 +95,14 @@
     },
     "emailAddress":{
       "type": "string"
+    },
+    "metricAlerts_NLB":{
+      "type": "string",
+      "defaultValue": "LoadBalancerBackend"
+    },
+    "NLBAlertName":{
+      "type": "string",
+      "defaultValue": "NLBAlert"
     }
   },
   "variables": {
@@ -948,7 +956,9 @@
       "name": "webAppRestart",
       "type": "Microsoft.Automation/automationAccounts/runbooks",
       "apiVersion": "2018-06-30",
-      "dependsOn":"[concat('Microsoft.Automation/automationAccounts/', parameters('automationAccountName'))]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Automation/automationAccounts/', parameters('automationAccountName'))]"
+      ],
       "properties": {
         "runbookType": "PowerShell",
         "publishContentLink": {
@@ -975,7 +985,26 @@
       }
     },
     {
-      "name": "Runbook Restart",
+      "type": "microsoft.insights/actionGroups",
+      "apiVersion": "2018-03-01",
+      "name": "[parameters('NLBAlertName')]",
+      "location": "Global",
+      "properties": {
+          "groupShortName": "NLBAlert",
+          "enabled": true,
+          "emailReceivers": [],
+          "smsReceivers": [],
+          "webhookReceivers": [],
+          "itsmReceivers": [],
+          "azureAppPushReceivers": [],
+          "automationRunbookReceivers": [],
+          "voiceReceivers": [],
+          "logicAppReceivers": [],
+          "azureFunctionReceivers": []
+      }
+  },
+    {
+      "name": "RunbookRestart",
       "type": "microsoft.insights/actionGroups",
       "apiVersion": "2018-09-01",
       "location": "[parameters('location')]",
@@ -992,7 +1021,36 @@
           }
         ]
       }
-    }
+    },
+    {
+      "type": "microsoft.insights/metricAlerts",
+      "apiVersion": "2018-03-01",
+      "name": "[parameters('metricAlerts_NLB')]",
+      "location": "global",
+      "dependsOn": [
+          "[resourceId('Microsoft.Network/loadBalancers', variables('loadBalancerName'))]",
+          "[resourceId('microsoft.insights/actionGroups', parameters('NLBAlertName'))]"
+      ],
+      "properties": {
+          "description": "Fires when probe avergae is less than 80%",
+          "severity": 3,
+          "enabled": true,
+          "scopes": [
+              "[resourceId('Microsoft.Network/loadBalancers', variables('loadBalancerName'))]"
+          ],
+          "evaluationFrequency": "PT1M",
+          "windowSize": "PT5M",
+          "criteria": {
+              "odata.type": "Microsoft.Azure.Monitor.SingleResourceMultipleMetricCriteria"
+          },
+          "actions": [
+              {
+                  "actionGroupId": "[parameters('NLBAlertName')]",
+                  "webHookProperties": {}
+              }
+          ]
+      }
+  }
   ],
   "outputs": {
     "WorkspaceID": {
