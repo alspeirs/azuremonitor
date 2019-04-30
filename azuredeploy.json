@@ -1016,6 +1016,9 @@
       "type": "microsoft.insights/actionGroups",
       "apiVersion": "2018-09-01",
       "location": "Global",
+      "dependsOn": [
+        "[resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccountName'))]"
+      ],
       "tags": {},
       "properties": {
         "groupShortName": "Restart",
