@@ -748,7 +748,7 @@
           "location": "[resourceGroup().location]",
           "dependsOn": [
             "[resourceId('Microsoft.Compute/virtualMachines', concat(parameters('virtualMachineNamePrefix'), copyIndex(1)))]",
-            "[resourceId('Microsoft.Compute/virtualMachines/', variables('vmname'), '/extensions/Microsoft.Powershell.DSC')]"
+            "[concat('Microsoft.Compute/virtualMachines/', parameters('virtualMachineNamePrefix'), copyIndex(1),  '/extensions/Microsoft.Powershell.DSC')]"
         
           ],
           "tags": {
