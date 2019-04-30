@@ -973,7 +973,7 @@
       "name": "Email Alert 1",
       "type": "microsoft.insights/actionGroups",
       "apiVersion": "2018-09-01",
-      "location": "[parameters('location')]",
+      "location": "Global",
       "tags": {},
       "properties": {
         "groupShortName": "Email",
@@ -1009,7 +1009,7 @@
       "name": "RunbookRestart",
       "type": "microsoft.insights/actionGroups",
       "apiVersion": "2018-09-01",
-      "location": "[parameters('location')]",
+      "location": "Global",
       "tags": {},
       "properties": {
         "groupShortName": "Restart",
@@ -1025,7 +1025,7 @@
       }
     },
     {
-      "type": "microsoft.insights/metricAlerts",
+      "type": "microsoft.Insights/metricAlerts",
       "apiVersion": "2018-03-01",
       "name": "[parameters('metricAlerts_NLB')]",
       "location": "global",
