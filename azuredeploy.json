@@ -958,7 +958,7 @@
       },
       "resources": [
         {
-          "name": "runbookWebhook",
+          "name": "[concat(parameters('automationAccountName'), '/Alert25560')]",
           "type":"webhooks",
           "apiVersion": "2015-10-31",
           "dependsOn": [
@@ -967,6 +967,7 @@
         ],
           "properties": {
             "isEnabled":true,
+            "expiryTime": "2029-04-24T16:18:14.622+00:00",
             "runbook": {
               "name": "webAppRestart"
             }
@@ -1033,7 +1034,7 @@
       "location": "Global",
       "dependsOn": [
         "[resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccountName'))]",
-        "[concat('Microsoft.Automation/automationAccounts/', parameters('automationAccountName'), '/webhooks/runbookwebhook')]"
+        "[concat('Microsoft.Automation/automationAccounts/', parameters('automationAccountName'), '/webhooks/Alert25560')]"
       ],
       "tags": {},
       "properties": {
@@ -1043,7 +1044,7 @@
           {
             "automationAccountId": "[resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccountName'))]",
             "runbookName": "webAppRestart",
-            "webhookResourceId": "[concat('Microsoft.Automation/automationAccounts/', parameters('automationAccountName'), '/webhooks/runbookwebhook')]",
+            "webhookResourceId": "[concat('Microsoft.Automation/automationAccounts/', parameters('automationAccountName'), '/webhooks/Alert25560')]",
             "isGlobalRunbook": true
           }
         ]
