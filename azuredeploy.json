@@ -972,21 +972,18 @@
               "uri": "https://raw.githubusercontent.com/aaronlafferty/azuremonitor/master/runbooks/webAppRestart.ps1"
             }
           }
-        },
-        {
-          "name": "runbookWebhook",
-          "type": "webhooks",
-          "dependson":[
-            "[resourceId('Microsoft.Automation/automationAccounts/', parameters('automationAccountName'))]"
-          ],
-          "apiVersion": "2015-10-31",
-          "properties": {
-            "runbook": {
-              "name": "webAppRestart"
-            }
-          }
         }
       ]
+    },
+    {
+      "name": "runbookWebhook",
+      "type": "Microsoft.Automation/automationAccounts/webhooks",
+      "apiVersion": "2015-10-31",
+      "properties": {
+        "runbook": {
+          "name": "webAppRestart"
+        }
+      }
     },
     {
       "name": "Email Alert 1",
@@ -1030,7 +1027,8 @@
       "apiVersion": "2018-09-01",
       "location": "Global",
       "dependsOn": [
-        "[resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccountName'))]"
+        "[resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccountName'))]",
+        "[resourceId('Microsoft.Automation/automationAccounts/webhooks', 'runbookWebhook')]"
       ],
       "tags": {},
       "properties": {
