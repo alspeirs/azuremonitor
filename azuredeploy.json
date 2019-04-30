@@ -1028,7 +1028,7 @@
       "location": "Global",
       "dependsOn": [
         "[resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccountName'))]",
-        "[resourceId('Microsoft.Automation/automationAccounts/webhooks', 'runbookWebhook')]"
+        "[concat('Microsoft.Automation/automationAccounts/', parameters('automationAccountName'), '/webhooks/runbookwebhook')]"
       ],
       "tags": {},
       "properties": {
@@ -1038,7 +1038,7 @@
           {
             "automationAccountId": "[resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccountName'))]",
             "runbookName": "webAppRestart",
-            "webhookResourceId": "[resourceId('Microsoft.Automation/automationAccounts/webhooks', 'runbookWebhook')]",
+            "webhookResourceId": "[concat('Microsoft.Automation/automationAccounts/', parameters('automationAccountName'), '/webhooks/runbookwebhook')]",
             "isGlobalRunbook": true
           }
         ]
