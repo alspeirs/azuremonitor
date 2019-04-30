@@ -951,7 +951,11 @@
       "type": "Microsoft.Automation/automationAccounts",
       "apiVersion": "2015-10-31",
       "location": "[resourceGroup().location]",
-      "properties": {},
+      "properties": {
+        "sku":{
+          "name":"Basic"
+        }
+      },
       "resources": [
         {
           "name": "webAppRestart",
