@@ -958,6 +958,16 @@
       },
       "resources": [
         {
+          "name": "runbookWebhook",
+          "type":"webhooks",
+          "apiVersion": "2015-10-31",
+          "properties": {
+            "runbook": {
+              "name": "webAppRestart"
+            }
+          }
+        },
+        {
           "name": "webAppRestart",
           "type": "runbooks",
           "apiVersion": "2015-10-31",
@@ -974,16 +984,6 @@
           }
         }
       ]
-    },
-    {
-      "name": "runbookWebhook",
-      "type": "Microsoft.Automation/automationAccounts/webhooks",
-      "apiVersion": "2015-10-31",
-      "properties": {
-        "runbook": {
-          "name": "webAppRestart"
-        }
-      }
     },
     {
       "name": "Email Alert 1",
