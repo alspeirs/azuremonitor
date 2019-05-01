@@ -1030,7 +1030,17 @@
           "evaluationFrequency": "PT1M",
           "windowSize": "PT5M",
           "criteria": {
-              "odata.type": "Microsoft.Azure.Monitor.SingleResourceMultipleMetricCriteria"
+              "odata.type": "Microsoft.Azure.Monitor.SingleResourceMultipleMetricCriteria",
+              "allOf":[
+                {
+                  "name" : "1st criterion",
+                  "metricName": "DipAvailability",
+                  "dimensions":[],
+                  "operator": "LessThanOrEqual",
+                  "threshold" : 80,
+                  "timeAggregation": "Average"
+                }
+              ]
           },
           "actions": [
               {
