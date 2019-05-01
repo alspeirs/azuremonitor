@@ -1035,7 +1035,13 @@
                 {
                   "name" : "1st criterion",
                   "metricName": "DipAvailability",
-                  "dimensions":[],
+                  "dimensions":[
+                    {
+                      "name": "BackendIPAddress",
+                      "operator": "Include",
+                      "values":["10.0.0.4", "10.0.0.5"]
+                    }
+                  ],
                   "operator": "LessThanOrEqual",
                   "threshold" : 80,
                   "timeAggregation": "Average"
