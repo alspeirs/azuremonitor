@@ -1055,7 +1055,523 @@
               }
           ]
       }
-  }
+  },
+  {
+    "name": "ServiceOpsDashboard",
+    "type": "Microsoft.Portal/dashboards",
+    "location": "[resourceGroup().location]",
+    "tags": {
+      "hidden-title": "OpsDashboard"
+    },
+    "apiVersion": "2015-08-01-preview",
+    "properties": {
+        "lenses": {
+            "0": {
+                "order": 0,
+                "parts": {
+                    "0": {
+                        "position": {
+                            "x": 0,
+                            "y": 0,
+                            "rowSpan": 4,
+                            "colSpan": 6
+                        },
+                        "metadata": {
+                            "inputs": [
+                                {
+                                    "name": "options",
+                                    "value": {
+                                        "charts": [
+                                            {
+                                                "metrics": [
+                                                    {
+                                                        "name": "DipAvailability",
+                                                        "resourceMetadata": {
+                                                            "resourceId": "[concat('/subscriptions/', subscription().subscriptionId, '/resourcegroups/', resourceGroup().name, '/providers/Microsoft.Network/loadBalancers/', variables('loadBalancerName'))]"
+                                                        },
+                                                        "aggregationType": 1
+                                                    }
+                                                ],
+                                                "grouping": {
+                                                    "dimensionName": {
+                                                        "id": "BackendIPAddress",
+                                                        "displayName": "Backend IP Address"
+                                                    }
+                                                },
+                                                "title": "Avg Health Probe Status by Backend IP Address",
+                                                "itemDataModel": {
+                                                    "grouping": {
+                                                        "kind": 1,
+                                                        "dimension": {
+                                                            "dimensionName": {
+                                                                "id": "BackendIPAddress",
+                                                                "displayName": "Backend IP Address"
+                                                            }
+                                                        }
+                                                    },
+                                                    "aggregation": 1,
+                                                    "metrics": [
+                                                        {
+                                                            "id": {
+                                                                "resourceDefinition": {
+                                                                    "id": "[concat('/subscriptions/', subscription().subscriptionId, '/resourcegroups/', resourceGroup().name, '/providers/Microsoft.Network/loadBalancers/', variables('loadBalancerName'))]"
+                                                                },
+                                                                "name": {
+                                                                    "id": "DipAvailability",
+                                                                    "displayName": "Health Probe Status"
+                                                                },
+                                                                "namespace": {
+                                                                    "name": "microsoft.network/loadbalancers"
+                                                                }
+                                                            },
+                                                            "metricAggregation": 4,
+                                                            "color": "#47BDF5"
+                                                        }
+                                                    ],
+                                                    "title": "Avg Health Probe Status by Backend IP Address",
+                                                    "version": {
+                                                        "major": 1,
+                                                        "minor": 0,
+                                                        "build": 0
+                                                    }
+                                                }
+                                            }
+                                        ],
+                                        "v2charts": true,
+                                        "version": 1
+                                    }
+                                },
+                                {
+                                    "name": "sharedTimeRange",
+                                    "isOptional": true
+                                }
+                            ],
+                            "type": "Extension/HubsExtension/PartType/MonitorChartPart",
+                            "settings": {
+                                "content": {
+                                    "options": {
+                                        "version": 1,
+                                        "chart": {
+                                            "metrics": [
+                                                {
+                                                    "resourceMetadata": {
+                                                        "id": "[concat('/subscriptions/', subscription().subscriptionId, '/resourcegroups/', resourceGroup().name, '/providers/Microsoft.Network/loadBalancers/', variables('loadBalancerName'))]"
+                                                    },
+                                                    "name": "DipAvailability",
+                                                    "aggregationType": 4,
+                                                    "namespace": "microsoft.network/loadbalancers",
+                                                    "metricVisualization": {
+                                                        "displayName": "Health Probe Status",
+                                                        "color": "#47BDF5"
+                                                    }
+                                                }
+                                            ],
+                                            "visualization": {},
+                                            "title": "Avg Health Probe Status by Backend IP Address",
+                                            "grouping": {
+                                                "dimension": "BackendIPAddress"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "1": {
+                        "position": {
+                            "x": 6,
+                            "y": 0,
+                            "rowSpan": 4,
+                            "colSpan": 6
+                        },
+                        "metadata": {
+                            "inputs": [
+                                {
+                                    "name": "options",
+                                    "value": {
+                                        "charts": [
+                                            {
+                                                "metrics": [
+                                                    {
+                                                        "name": "Percentage CPU",
+                                                        "resourceMetadata": {
+                                                            "resourceId": "[concat('/subscriptions/', subscription().subscriptionId, '/resourcegroups/', resourceGroup().name, '/providers/Microsoft.Compute/virtualMachines/WebApp1')]"
+                                                        },
+                                                        "aggregationType": 1
+                                                    },
+                                                    {
+                                                        "name": "Percentage CPU",
+                                                        "resourceMetadata": {
+                                                            "resourceId": "[concat('/subscriptions/', subscription().subscriptionId, '/resourcegroups/', resourceGroup().name, '/providers/Microsoft.Compute/virtualMachines/WebApp2')]"
+                                                        },
+                                                        "aggregationType": 1
+                                                    }
+                                                ],
+                                                "title": "Avg Percentage CPU for WebApp1 and WebApp2",
+                                                "itemDataModel": {
+                                                    "aggregation": 1,
+                                                    "metrics": [
+                                                        {
+                                                            "id": {
+                                                                "resourceDefinition": {
+                                                                    "id": "[concat('/subscriptions/', subscription().subscriptionId, '/resourcegroups/', resourceGroup().name, '/providers/Microsoft.Compute/virtualMachines/WebApp1')]"
+                                                                },
+                                                                "name": {
+                                                                    "id": "Percentage CPU",
+                                                                    "displayName": "Percentage CPU"
+                                                                },
+                                                                "namespace": {
+                                                                    "name": "microsoft.compute/virtualmachines"
+                                                                }
+                                                            },
+                                                            "metricAggregation": 4,
+                                                            "color": "#47BDF5"
+                                                        },
+                                                        {
+                                                            "id": {
+                                                                "resourceDefinition": {
+                                                                    "id": "[concat('/subscriptions/', subscription().subscriptionId, '/resourcegroups/', resourceGroup().name, '/providers/Microsoft.Compute/virtualMachines/WebApp2')]"
+                                                                },
+                                                                "name": {
+                                                                    "id": "Percentage CPU",
+                                                                    "displayName": "Percentage CPU"
+                                                                },
+                                                                "namespace": {
+                                                                    "name": "microsoft.compute/virtualmachines"
+                                                                }
+                                                            },
+                                                            "metricAggregation": 4,
+                                                            "color": "#7E58FF"
+                                                        }
+                                                    ],
+                                                    "title": "Avg Percentage CPU for WebApp1 and WebApp2",
+                                                    "version": {
+                                                        "major": 1,
+                                                        "minor": 0,
+                                                        "build": 0
+                                                    }
+                                                }
+                                            }
+                                        ],
+                                        "v2charts": true,
+                                        "version": 1
+                                    },
+                                    "isOptional": true
+                                },
+                                {
+                                    "name": "sharedTimeRange",
+                                    "isOptional": true
+                                }
+                            ],
+                            "type": "Extension/HubsExtension/PartType/MonitorChartPart",
+                            "settings": {
+                                "content": {
+                                    "options": {
+                                        "version": 1,
+                                        "chart": {
+                                            "metrics": [
+                                                {
+                                                    "resourceMetadata": {
+                                                        "id": "[concat('/subscriptions/', subscription().subscriptionId, '/resourcegroups/', resourceGroup().name, '/providers/Microsoft.Compute/virtualMachines/WebApp1')]"
+                                                    },
+                                                    "name": "Percentage CPU",
+                                                    "aggregationType": 4,
+                                                    "namespace": "microsoft.compute/virtualmachines",
+                                                    "metricVisualization": {
+                                                        "displayName": "Percentage CPU",
+                                                        "color": "#47BDF5"
+                                                    }
+                                                },
+                                                {
+                                                    "resourceMetadata": {
+                                                        "id": "[concat('/subscriptions/', subscription().subscriptionId, '/resourcegroups/', resourceGroup().name, '/providers/Microsoft.Compute/virtualMachines/WebApp2')]"
+                                                    },
+                                                    "name": "Percentage CPU",
+                                                    "aggregationType": 4,
+                                                    "namespace": "microsoft.compute/virtualmachines",
+                                                    "metricVisualization": {
+                                                        "displayName": "Percentage CPU",
+                                                        "color": "#7E58FF"
+                                                    }
+                                                }
+                                            ],
+                                            "visualization": {},
+                                            "title": "Avg Percentage CPU for WebApp1 and WebApp2"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "2": {
+                        "position": {
+                            "x": 0,
+                            "y": 4,
+                            "rowSpan": 4,
+                            "colSpan": 6
+                        },
+                        "metadata": {
+                            "inputs": [
+                                {
+                                    "name": "options",
+                                    "value": {
+                                        "charts": [
+                                            {
+                                                "metrics": [
+                                                    {
+                                                        "name": "PacketCount",
+                                                        "resourceMetadata": {
+                                                            "resourceId": "[concat('/subscriptions/', subscription().subscriptionId, '/resourcegroups/', resourceGroup().name, '/providers/Microsoft.Network/loadBalancers/', variables('loadBalancerName'))]"
+                                                        },
+                                                        "aggregationType": 4
+                                                    }
+                                                ],
+                                                "grouping": {
+                                                    "dimensionName": {
+                                                        "id": "Direction",
+                                                        "displayName": "Direction"
+                                                    }
+                                                },
+                                                "title": "Sum Packet Count by Direction",
+                                                "itemDataModel": {
+                                                    "grouping": {
+                                                        "kind": 1,
+                                                        "dimension": {
+                                                            "dimensionName": {
+                                                                "id": "Direction",
+                                                                "displayName": "Direction"
+                                                            }
+                                                        }
+                                                    },
+                                                    "aggregation": 1,
+                                                    "metrics": [
+                                                        {
+                                                            "id": {
+                                                                "resourceDefinition": {
+                                                                    "id": "[concat('/subscriptions/', subscription().subscriptionId, '/resourcegroups/', resourceGroup().name, '/providers/Microsoft.Network/loadBalancers/', variables('loadBalancerName'))]"
+                                                                },
+                                                                "name": {
+                                                                    "id": "PacketCount",
+                                                                    "displayName": "Packet Count"
+                                                                },
+                                                                "namespace": {
+                                                                    "name": "microsoft.network/loadbalancers"
+                                                                }
+                                                            },
+                                                            "metricAggregation": 1,
+                                                            "color": "#47BDF5"
+                                                        }
+                                                    ],
+                                                    "title": "Sum Packet Count by Direction",
+                                                    "version": {
+                                                        "major": 1,
+                                                        "minor": 0,
+                                                        "build": 0
+                                                    }
+                                                }
+                                            }
+                                        ],
+                                        "v2charts": true,
+                                        "version": 1
+                                    },
+                                    "isOptional": true
+                                },
+                                {
+                                    "name": "sharedTimeRange",
+                                    "isOptional": true
+                                }
+                            ],
+                            "type": "Extension/HubsExtension/PartType/MonitorChartPart",
+                            "settings": {
+                                "content": {
+                                    "options": {
+                                        "version": 1,
+                                        "chart": {
+                                            "metrics": [
+                                                {
+                                                    "resourceMetadata": {
+                                                        "id": "[concat('/subscriptions/', subscription().subscriptionId, '/resourcegroups/', resourceGroup().name, '/providers/Microsoft.Network/loadBalancers/', variables('loadBalancerName'))]"
+                                                    },
+                                                    "name": "PacketCount",
+                                                    "aggregationType": 1,
+                                                    "namespace": "microsoft.network/loadbalancers",
+                                                    "metricVisualization": {
+                                                        "displayName": "Packet Count",
+                                                        "color": "#47BDF5"
+                                                    }
+                                                }
+                                            ],
+                                            "visualization": {},
+                                            "title": "Sum Packet Count by Direction",
+                                            "grouping": {
+                                                "dimension": "Direction"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "3": {
+                        "position": {
+                            "x": 6,
+                            "y": 4,
+                            "rowSpan": 4,
+                            "colSpan": 6
+                        },
+                        "metadata": {
+                            "inputs": [
+                                {
+                                    "name": "options",
+                                    "value": {
+                                        "charts": [
+                                            {
+                                                "metrics": [
+                                                    {
+                                                        "name": "TotalJob",
+                                                        "resourceMetadata": {
+                                                            "resourceId": "[concat('/subscriptions/', subscription().subscriptionId, '/resourcegroups/', resourceGroup().name, '/providers/Microsoft.Automation/automationAccounts/', parameters('automationAccounts'))]"
+                                                        },
+                                                        "aggregationType": 4
+                                                    }
+                                                ],
+                                                "grouping": {
+                                                    "dimensionName": {
+                                                        "id": "Runbook",
+                                                        "displayName": "Runbook Name"
+                                                    }
+                                                },
+                                                "title": "Sum Total Jobs by Runbook Name",
+                                                "itemDataModel": {
+                                                    "grouping": {
+                                                        "kind": 1,
+                                                        "dimension": {
+                                                            "dimensionName": {
+                                                                "id": "Runbook",
+                                                                "displayName": "Runbook Name"
+                                                            }
+                                                        }
+                                                    },
+                                                    "aggregation": 1,
+                                                    "metrics": [
+                                                        {
+                                                            "id": {
+                                                                "resourceDefinition": {
+                                                                    "id": "[concat('/subscriptions/', subscription().subscriptionId, '/resourcegroups/', resourceGroup().name, '/providers/Microsoft.Automation/automationAccounts/', parameters('automationAccounts'))]"
+                                                                },
+                                                                "name": {
+                                                                    "id": "TotalJob",
+                                                                    "displayName": "Total Jobs"
+                                                                },
+                                                                "namespace": {
+                                                                    "name": "microsoft.automation/automationaccounts"
+                                                                }
+                                                            },
+                                                            "metricAggregation": 1,
+                                                            "color": "#47BDF5"
+                                                        }
+                                                    ],
+                                                    "title": "Sum Total Jobs by Runbook Name",
+                                                    "version": {
+                                                        "major": 1,
+                                                        "minor": 0,
+                                                        "build": 0
+                                                    }
+                                                }
+                                            }
+                                        ],
+                                        "v2charts": true,
+                                        "version": 1
+                                    },
+                                    "isOptional": true
+                                },
+                                {
+                                    "name": "sharedTimeRange",
+                                    "isOptional": true
+                                }
+                            ],
+                            "type": "Extension/HubsExtension/PartType/MonitorChartPart",
+                            "settings": {
+                                "content": {
+                                    "options": {
+                                        "version": 1,
+                                        "chart": {
+                                            "metrics": [
+                                                {
+                                                    "resourceMetadata": {
+                                                        "id": "[concat('/subscriptions/', subscription().subscriptionId, '/resourcegroups/', resourceGroup().name, '/providers/Microsoft.Automation/automationAccounts/', parameters('automationAccounts'))]"
+                                                    },
+                                                    "name": "TotalJob",
+                                                    "aggregationType": 1,
+                                                    "namespace": "microsoft.automation/automationaccounts",
+                                                    "metricVisualization": {
+                                                        "displayName": "Total Jobs",
+                                                        "color": "#47BDF5"
+                                                    }
+                                                }
+                                            ],
+                                            "visualization": {},
+                                            "title": "Sum Total Jobs by Runbook Name",
+                                            "grouping": {
+                                                "dimension": "Runbook"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "metadata": {
+            "model": {
+                "timeRange": {
+                    "value": {
+                        "relative": {
+                            "duration": 24,
+                            "timeUnit": 1
+                        }
+                    },
+                    "type": "MsPortalFx.Composition.Configuration.ValueTypes.TimeRange"
+                },
+                "filterLocale": {
+                    "value": "en-us"
+                },
+                "filters": {
+                    "value": {
+                        "MsPortalFx_TimeRange": {
+                            "model": {
+                                "format": "local",
+                                "granularity": "1m",
+                                "relative": "4h"
+                            },
+                            "displayCache": {
+                                "name": "Local Time",
+                                "value": "Past 4 hours"
+                            },
+                            "filteredPartIds": [
+                                "StartboardPart-MonitorChartPart-5b714090-5e8e-40a9-833a-826a67154004",
+                                "StartboardPart-MonitorChartPart-9ca72bab-7573-48fc-bfdc-bf14c9c23773",
+                                "StartboardPart-MonitorChartPart-9ca72bab-7573-48fc-bfdc-bf14c9c23a1c",
+                                "StartboardPart-MonitorChartPart-9ca72bab-7573-48fc-bfdc-bf14c9c23bac",
+                                "StartboardPart-MonitorChartPart-9ca72bab-7573-48fc-bfdc-bf14c9c23dc2",
+                                "StartboardPart-MonitorChartPart-768c60a5-56c7-4c38-9b1d-351333fde004",
+                                "StartboardPart-MonitorChartPart-768c60a5-56c7-4c38-9b1d-351333fde006",
+                                "StartboardPart-MonitorChartPart-768c60a5-56c7-4c38-9b1d-351333fde008",
+                                "StartboardPart-MonitorChartPart-768c60a5-56c7-4c38-9b1d-351333fde00a",
+                                "StartboardPart-MonitorChartPart-e4f45709-c3e1-4d1d-93bb-479345194004",
+                                "StartboardPart-MonitorChartPart-e4f45709-c3e1-4d1d-93bb-479345194006",
+                                "StartboardPart-MonitorChartPart-e4f45709-c3e1-4d1d-93bb-479345194008",
+                                "StartboardPart-MonitorChartPart-e4f45709-c3e1-4d1d-93bb-47934519400a"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
   ],
   "outputs": {
     "WorkspaceID": {
