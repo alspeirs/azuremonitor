@@ -1430,7 +1430,7 @@
                                                     {
                                                         "name": "TotalJob",
                                                         "resourceMetadata": {
-                                                            "resourceId": "[concat('/subscriptions/', subscription().subscriptionId, '/resourcegroups/', resourceGroup().name, '/providers/Microsoft.Automation/automationAccounts/', parameters('automationAccounts'))]"
+                                                            "resourceId": "[concat('/subscriptions/', subscription().subscriptionId, '/resourcegroups/', resourceGroup().name, '/providers/Microsoft.Automation/automationAccounts/', parameters('automationAccountName'))]"
                                                         },
                                                         "aggregationType": 4
                                                     }
@@ -1457,7 +1457,7 @@
                                                         {
                                                             "id": {
                                                                 "resourceDefinition": {
-                                                                    "id": "[concat('/subscriptions/', subscription().subscriptionId, '/resourcegroups/', resourceGroup().name, '/providers/Microsoft.Automation/automationAccounts/', parameters('automationAccounts'))]"
+                                                                    "id": "[concat('/subscriptions/', subscription().subscriptionId, '/resourcegroups/', resourceGroup().name, '/providers/Microsoft.Automation/automationAccounts/', parameters('automationAccountName'))]"
                                                                 },
                                                                 "name": {
                                                                     "id": "TotalJob",
@@ -1499,7 +1499,7 @@
                                             "metrics": [
                                                 {
                                                     "resourceMetadata": {
-                                                        "id": "[concat('/subscriptions/', subscription().subscriptionId, '/resourcegroups/', resourceGroup().name, '/providers/Microsoft.Automation/automationAccounts/', parameters('automationAccounts'))]"
+                                                        "id": "[concat('/subscriptions/', subscription().subscriptionId, '/resourcegroups/', resourceGroup().name, '/providers/Microsoft.Automation/automationAccounts/', parameters('automationAccountName'))]"
                                                     },
                                                     "name": "TotalJob",
                                                     "aggregationType": 1,
