@@ -70,6 +70,6 @@ To trigger the alert you will need to shut down one of the web servers. Shutting
 
 ### Adding an action to an Alert (Email)
 
-### Attaching a runbook to an Alert (Self Heal)
+### Create an Action Group to trigger a runbook (Self Heal)
 
        
