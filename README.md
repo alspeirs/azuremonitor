@@ -40,7 +40,7 @@ We need to connect the VM's to the OMS workspace in order to collect stats on th
 4. On the Azure Monitor Insights OnBoarding blade, click on the the **"Choose a Log Analytics Workspace"** drop down and select the workspace that was created as a part of this deployment
 
 ### Metrics Dashboard
-A metrics dashboard has been created as part of this deployment. The dashboard is named **ServiceOpsDashboard**. Navigate to the dashboard in the resource group where this deployment was created. The ServiceOpsDashboard is using the following metrics. 
+A metrics dashboard has been created as part of this deployment. The dashboard is named **OpsDashboard**. Navigate to the dashboard in the resource group where this deployment was created. The OpsDashboard is using the following metrics. 
 
 	* Average health probe status by backend IP
 	* Average percentage of CPU for webapp 1 & 2
